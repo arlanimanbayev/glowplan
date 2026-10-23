@@ -43,7 +43,7 @@ const MODES = {
       { region: 'forehead', shape: ['ellipse', 300, 252, 90, 30] },
       { region: 'nose', shape: ['ellipse', 300, 396, 27, 46] },
       { region: 'cheek', shape: ['ellipse', 210, 434, 46, 36] },
-      { region: 'cheek', shape: ['ellipse', 390, 434, 46, 36], label: false },
+      { region: 'cheek', shape: ['ellipse', 390, 434, 46, 36], mirror: true },
     ],
   },
   lines: {
@@ -109,7 +109,7 @@ export function renderZoneMap(container, scan, mode, tip) {
       }
     }
     const zoneLabel = z.region && regional ? name : concern.label;
-    const shape = shapeEl(svg, z.shape, { class: 'zone', fill: zoneFill(score), tabindex: z.label === false ? -1 : 0, role: 'img', 'aria-label': `${zoneLabel}: ${score} out of 100` });
+    const shape = shapeEl(svg, z.shape, { class: 'zone', fill: zoneFill(score), tabindex: z.label === false || z.mirror ? -1 : 0, role: 'img', 'aria-label': `${zoneLabel}: ${score} out of 100` });
     shape.style.fill = zoneFill(score);
     attachTooltip(shape, tip, () => [`${score}/100`, zoneLabel, bandOf(score)]);
     caption.set(zoneLabel, score);

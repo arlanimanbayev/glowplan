@@ -72,8 +72,8 @@ const storableScan = (s) => ({
 // ---------------------------------------------------------------------------
 // Small helpers
 // ---------------------------------------------------------------------------
-const fmtDate = (iso) => new Date(iso).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
-const shortDate = (iso) => new Date(iso).toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
+const fmtDate = (iso) => new Date(iso).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+const shortDate = (iso) => new Date(iso).toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
 function node(tag, cls, text) {
   const n = document.createElement(tag);
   if (cls) n.className = cls;

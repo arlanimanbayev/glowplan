@@ -16,7 +16,7 @@ function h(tag, attrs = {}, ...children) {
   return node;
 }
 
-const fmtDate = (iso) => new Date(iso).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' });
+const fmtDate = (iso) => new Date(iso).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
 
 export function buildPrintSheet(sheet, { scan, plan, clinic, bandOf }) {
   sheet.replaceChildren();
