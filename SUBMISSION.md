@@ -79,8 +79,8 @@ JavaScript, Node.js, HTML, CSS, SVG, YouCam API (AI Skin Analysis, Skin Tone Ana
 
 ## Try it (instructions for judges)
 
-- **Live demo:** _add the Vercel URL here_
-- **Code:** _add the GitHub repository URL here_ (MIT license; setup steps in the README)
+- **Live demo:** https://glowplan.vercel.app
+- **Code:** https://github.com/arlanimanbayev/glowplan (MIT license; setup steps in the README)
 
 1. Open the app. The top bar shows whether the server runs **YouCam live** or **Demo data**, and whether the **Gemini planner** or the **scripted planner** is active.
 2. Fastest path: tap **Use the sample face**, then **Scan the sample**. It runs the full YouCam flow (one upload, then Skin analysis ✓ and Skin tone ✓) on synthetic data for an illustrated face and costs no units.

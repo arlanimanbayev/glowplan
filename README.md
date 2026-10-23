@@ -8,6 +8,8 @@ It works for one person on their phone, and for an aesthetic clinic that wants t
 
 Built for the [YouCam API Skin AI & eCommerce VTO Hackathon](https://youcam-api-skin-ai-ecommerce.devpost.com/), **Skin AI** track.
 
+**Live demo: [glowplan.vercel.app](https://glowplan.vercel.app)**
+
 ![Results on desktop](docs/screenshots/04-results-top-desktop-light.png)
 
 | Phone, dark | Skin profile (Skin Tone Analysis) | Face map with YouCam overlays | Progress between scans |
