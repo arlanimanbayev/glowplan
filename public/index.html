@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>GlowPlan</title>
+  <meta name="description" content="Scan your skin with YouCam AI Skin Analysis and get a routine you can follow: every step tied to a measured score, guidance on when a clinic visit could help, and progress between scans.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#e6ece9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1915" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/fonts/instrument-sans-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/app.css">
+  <script src="/theme.js"></script>
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="topbar">
+    <a class="wordmark" href="/" aria-label="GlowPlan home">
+      <svg class="mark" viewBox="0 0 28 32" aria-hidden="true"><path d="M2 31V14a12 12 0 0 1 24 0v17Z" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="14" cy="15" r="4.2" fill="var(--accent)"/></svg>
+      <span>GlowPlan</span>
+    </a>
+    <p class="clinic-tag" id="clinic-tag" hidden></p>
+    <div class="topbar-right">
+      <span class="status" id="youcam-status" title="Which YouCam mode this server runs in"><i></i><span>Checking YouCam</span></span>
+      <span class="status" id="agent-status" title="Which planner writes your plan"><i></i><span>Planner</span></span>
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ======================= Start ======================= -->
+    <section class="view view-start" id="view-start" aria-labelledby="start-title">
+      <div class="intro intro-head">
+        <h1 id="start-title">Scan your skin. Get a routine you can follow.</h1>
+        <p class="lede">From one selfie, YouCam’s AI Skin Analysis scores 15 skin concerns and its Skin Tone Analysis measures your skin colour. GlowPlan turns both into a morning and evening routine that fits your budget and time, shows when a clinic visit could help, and tracks what changes with each new scan.</p>
+        <div class="resume" id="resume" hidden>
+          <p id="resume-text"></p>
+          <button type="button" class="link-btn" id="resume-btn">Open your last plan</button>
+        </div>
+      </div>
+
+      <form class="scan-form" id="scan-form" novalidate>
+        <div class="form-head">
+          <h2 id="form-title">Your photo</h2>
+          <p class="form-sub" id="form-sub">Front-facing, no glasses, hair off your face.</p>
+        </div>
+
+        <div class="photo-step">
+          <div class="arch" id="arch">
+            <canvas id="preview" width="300" height="400" aria-label="Photo preview" role="img" hidden></canvas>
+            <img id="sample-preview" src="/samples/face.svg" alt="Illustrated sample face" hidden>
+            <svg class="guide" viewBox="0 0 300 400" aria-hidden="true"><ellipse cx="150" cy="178" rx="96" ry="124" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 7"/></svg>
+            <div class="arch-empty" id="arch-empty">
+              <p>Line your face up with the oval.</p>
+            </div>
+          </div>
+          <div class="photo-actions">
+            <label class="btn btn-primary file-btn">
+              <input type="file" id="camera-input" accept="image/*" capture="user">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+              <span>Take a selfie</span>
+            </label>
+            <label class="btn file-btn">
+              <input type="file" id="file-input" accept="image/jpeg,image/png,image/*">
+              <span>Upload a photo</span>
+            </label>
+            <button type="button" class="link-btn" id="sample-btn">Use the sample face</button>
+          </div>
+          <div class="photo-tools" id="photo-tools" hidden>
+            <label class="zoom"><span>Zoom to fill the oval</span><input type="range" id="zoom" min="1" max="2.6" step="0.02" value="1"></label>
+            <p class="tier-note" id="tier-note" aria-live="polite"></p>
+          </div>
+          <p class="field-error" id="photo-error" role="alert" hidden></p>
+        </div>
+
+        <details class="compare" id="compare">
+          <summary>Compare with an older photo</summary>
+          <p class="hint">Add a photo from before you started. GlowPlan scans both and shows what changed.</p>
+          <label class="btn file-btn small">
+            <input type="file" id="before-input" accept="image/jpeg,image/png,image/*">
+            <span id="before-label">Choose a before photo</span>
+          </label>
+        </details>
+
+        <fieldset class="field">
+          <legend>Goals <span class="quiet">(up to 3)</span></legend>
+          <div class="chips" id="goals"></div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend>Skin type</legend>
+          <div class="seg" id="skin-type"></div>
+        </fieldset>
+
+        <div class="field-row">
+          <fieldset class="field">
+            <legend>Budget</legend>
+            <div class="seg" id="budget"></div>
+          </fieldset>
+          <fieldset class="field">
+            <legend>Time each day</legend>
+            <div class="seg" id="time"></div>
+          </fieldset>
+        </div>
+
+        <fieldset class="field checks">
+          <legend>About your skin</legend>
+          <label class="check"><input type="checkbox" id="sensitive"><span>My skin reacts easily</span></label>
+          <label class="check"><input type="checkbox" id="pregnant"><span>I’m pregnant or breastfeeding</span></label>
+        </fieldset>
+
+        <button type="submit" class="btn btn-primary btn-wide" id="scan-btn">Scan and plan</button>
+        <p class="fine">GlowPlan never stores your photo. Cosmetic guidance, not medical advice.</p>
+      </form>
+
+      <div class="intro intro-more">
+        <ol class="how" aria-label="How it works">
+          <li><span><strong>Take a clear selfie.</strong> Face the camera in soft daylight, face filling the oval.</span></li>
+          <li><span><strong>Get your plan.</strong> Every step names the score or measured colour it answers.</span></li>
+          <li><span><strong>Scan again in 8 weeks.</strong> See what moved, concern by concern.</span></li>
+        </ol>
+        <p class="privacy" id="privacy-note"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5 3 4.5v5c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9v-5Z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span>Your photo is sent to YouCam for analysis and never stored by GlowPlan. YouCam removes uploads after 30 days. Your scores stay in this browser.</span></p>
+      </div>
+    </section>
+
+    <!-- ======================= Working ======================= -->
+    <section class="view view-working" id="view-working" aria-labelledby="working-title" hidden>
+      <div class="working-card">
+        <h2 id="working-title">Reading your skin</h2>
+        <p class="lede small" id="working-sub">YouCam is analysing 15 concerns. This usually takes a few seconds.</p>
+        <ol class="steps" id="steps" aria-live="polite"></ol>
+        <div class="retake" id="retake" hidden>
+          <h3 id="retake-title"></h3>
+          <ul id="retake-tips"></ul>
+          <button type="button" class="btn btn-primary" id="retake-btn">Choose another photo</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= Results ======================= -->
+    <section class="view view-results" id="view-results" aria-labelledby="plan-headline" hidden>
+      <div class="results-head">
+        <div>
+          <p class="meta" id="scan-meta"></p>
+          <h2 id="plan-headline"></h2>
+          <p class="demo-flag" id="demo-flag" hidden></p>
+        </div>
+        <div class="results-actions">
+          <button type="button" class="btn btn-primary" id="print-btn">Print for your clinic</button>
+          <button type="button" class="btn" id="checkin-btn">Add a check-in scan</button>
+          <button type="button" class="link-btn" id="restart-btn">Start over</button>
+        </div>
+      </div>
+
+      <div class="results-grid">
+        <aside class="face-panel" aria-label="Your scan">
+          <div class="arch arch-result">
+            <img id="result-photo" alt="">
+            <img id="result-overlay" alt="" hidden>
+          </div>
+          <div class="overlay-switch" id="overlay-switch" role="group" aria-label="Show where the scan saw each concern"></div>
+          <p class="overall" id="overall"></p>
+          <section class="zone-card" aria-labelledby="zone-title">
+            <div class="zone-head">
+              <h3 id="zone-title">Face map</h3>
+              <div class="tabs" role="tablist" id="zone-tabs"></div>
+            </div>
+            <div class="zone-map" id="zone-map"></div>
+            <ul class="zone-legend" id="zone-legend" aria-label="Score bands"></ul>
+            <p class="hint" id="zone-note"></p>
+          </section>
+        </aside>
+
+        <div class="plan-col">
+          <section class="block profile-block" id="profile-block" aria-labelledby="profile-title">
+            <h3 id="profile-title">Your skin profile</h3>
+            <div class="profile">
+              <div class="tone-swatch" id="tone-swatch" aria-hidden="true"></div>
+              <dl class="profile-facts" id="profile-facts"></dl>
+            </div>
+            <div class="ita" id="ita-scale" hidden></div>
+            <ul class="profile-notes" id="profile-notes"></ul>
+            <p class="hint" id="profile-hint">Skin colour comes from YouCam Skin Tone Analysis, and GlowPlan places it on the ITA skin-tone scale. The API measures colour, not undertone, so GlowPlan doesn’t guess one.</p>
+          </section>
+
+          <section class="block" id="progress-block" aria-labelledby="progress-title" hidden>
+            <div class="block-head">
+              <h3 id="progress-title">What changed</h3>
+              <button type="button" class="link-btn" id="progress-table-btn" aria-pressed="false">Show as table</button>
+            </div>
+            <p class="summary" id="progress-summary"></p>
+            <div class="legend" id="progress-legend"></div>
+            <div class="chart" id="progress-chart"></div>
+            <div class="table-wrap" id="progress-table" hidden></div>
+            <p class="hint" id="progress-notes"></p>
+          </section>
+
+          <section class="block" aria-labelledby="focus-title">
+            <h3 id="focus-title">Focus first</h3>
+            <ol class="focus-list" id="focus-list"></ol>
+          </section>
+
+          <section class="block" aria-labelledby="routine-title">
+            <h3 id="routine-title">Your routine</h3>
+            <p class="hint" id="routine-prefs"></p>
+            <div class="routine">
+              <div class="routine-col">
+                <h4><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Morning</h4>
+                <ol class="steps-list" id="am-list"></ol>
+              </div>
+              <div class="routine-col">
+                <h4><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Evening</h4>
+                <ol class="steps-list" id="pm-list"></ol>
+              </div>
+            </div>
+            <ul class="issues" id="routine-issues"></ul>
+          </section>
+
+          <section class="block" aria-labelledby="ramp-title">
+            <h3 id="ramp-title">Start slowly</h3>
+            <ol class="ramp" id="ramp"></ol>
+          </section>
+
+          <section class="block" aria-labelledby="pro-title">
+            <h3 id="pro-title">When to see a professional</h3>
+            <p class="summary" id="pro-summary"></p>
+            <div class="pro-list" id="pro-list"></div>
+            <p class="hint" id="pro-when"></p>
+            <div class="flags">
+              <h4>See someone promptly</h4>
+              <ul id="red-flags"></ul>
+            </div>
+          </section>
+
+          <section class="block" aria-labelledby="scores-title">
+            <div class="block-head">
+              <h3 id="scores-title">All 15 scores</h3>
+              <button type="button" class="link-btn" id="scores-table-btn" aria-pressed="false">Show as table</button>
+            </div>
+            <p class="hint">Scores run from 1 to 100. Higher means the scan saw less of that concern. Your focus areas are highlighted.</p>
+            <div class="chart" id="scores-chart"></div>
+            <div class="table-wrap" id="scores-table" hidden></div>
+          </section>
+
+          <details class="block trace-block" id="trace-block">
+            <summary><span>How this plan was made</span><span class="quiet" id="trace-summary"></span></summary>
+            <ol class="steps steps-compact" id="trace-list"></ol>
+          </details>
+
+          <p class="disclaimer" id="disclaimer"></p>
+          <button type="button" class="link-btn forget" id="forget-btn">Forget my scans on this device</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+  <article class="print-sheet" id="print-sheet" aria-hidden="true"></article>
+</body>
+</html>

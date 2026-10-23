@@ -1,0 +1,134 @@
+{
+  "hd_wrinkle": {
+    "whole": {
+      "raw_score": 56.7,
+      "ui_score": 62,
+      "output_mask_name": "hd_wrinkle_output_all.png"
+    },
+    "forehead": {
+      "raw_score": 60.7,
+      "ui_score": 66,
+      "output_mask_name": "hd_wrinkle_output_forehead.png"
+    },
+    "glabellar": {
+      "raw_score": 64.7,
+      "ui_score": 70,
+      "output_mask_name": "hd_wrinkle_output_glabellar.png"
+    },
+    "crowfeet": {
+      "raw_score": 51.7,
+      "ui_score": 57,
+      "output_mask_name": "hd_wrinkle_output_crowfeet.png"
+    },
+    "periocular": {
+      "raw_score": 49.7,
+      "ui_score": 55,
+      "output_mask_name": "hd_wrinkle_output_periocular.png"
+    },
+    "nasolabial": {
+      "raw_score": 58.7,
+      "ui_score": 64,
+      "output_mask_name": "hd_wrinkle_output_nasolabial.png"
+    },
+    "marionette": {
+      "raw_score": 65.7,
+      "ui_score": 71,
+      "output_mask_name": "hd_wrinkle_output_marionette.png"
+    }
+  },
+  "hd_pore": {
+    "whole": {
+      "raw_score": 34.9,
+      "ui_score": 41,
+      "output_mask_name": "hd_pore_output_all.png"
+    },
+    "forehead": {
+      "raw_score": 45.9,
+      "ui_score": 52,
+      "output_mask_name": "hd_pore_output_forehead.png"
+    },
+    "nose": {
+      "raw_score": 26.9,
+      "ui_score": 33,
+      "output_mask_name": "hd_pore_output_nose.png"
+    },
+    "cheek": {
+      "raw_score": 40.9,
+      "ui_score": 47,
+      "output_mask_name": "hd_pore_output_cheek.png"
+    }
+  },
+  "hd_texture": {
+    "whole": {
+      "raw_score": 47.1,
+      "ui_score": 54,
+      "output_mask_name": "hd_texture_output.png"
+    }
+  },
+  "hd_acne": {
+    "whole": {
+      "raw_score": 42.2,
+      "ui_score": 47,
+      "output_mask_name": "hd_acne_output.png"
+    }
+  },
+  "hd_redness": {
+    "raw_score": 52.4,
+    "ui_score": 58,
+    "output_mask_name": "hd_redness_output.png"
+  },
+  "hd_oiliness": {
+    "raw_score": 37.6,
+    "ui_score": 44,
+    "output_mask_name": "hd_oiliness_output.png"
+  },
+  "hd_moisture": {
+    "raw_score": 55.8,
+    "ui_score": 63,
+    "output_mask_name": "hd_moisture_output.png"
+  },
+  "hd_radiance": {
+    "raw_score": 51.9,
+    "ui_score": 57,
+    "output_mask_name": "hd_radiance_output.png"
+  },
+  "hd_firmness": {
+    "raw_score": 66.1,
+    "ui_score": 72,
+    "output_mask_name": "hd_firmness_output.png"
+  },
+  "hd_age_spot": {
+    "raw_score": 59.3,
+    "ui_score": 66,
+    "output_mask_name": "hd_age_spot_output.png"
+  },
+  "hd_dark_circle": {
+    "raw_score": 47.4,
+    "ui_score": 52,
+    "output_mask_name": "hd_dark_circle_output.png"
+  },
+  "hd_eye_bag": {
+    "raw_score": 63.6,
+    "ui_score": 69,
+    "output_mask_name": "hd_eye_bag_output.png"
+  },
+  "hd_tear_trough": {
+    "raw_score": 54.8,
+    "ui_score": 61,
+    "output_mask_name": "hd_tear_trough_output.png"
+  },
+  "hd_droopy_upper_eyelid": {
+    "raw_score": 71,
+    "ui_score": 78,
+    "output_mask_name": "hd_droopy_upper_eyelid_output.png"
+  },
+  "hd_droopy_lower_eyelid": {
+    "raw_score": 69.1,
+    "ui_score": 74,
+    "output_mask_name": "hd_droopy_lower_eyelid_output.png"
+  },
+  "all": {
+    "score": 59.84
+  },
+  "skin_age": 31
+}

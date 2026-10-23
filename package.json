@@ -1,0 +1,30 @@
+{
+  "name": "glowplan",
+  "version": "1.0.0",
+  "description": "A skin-care planning agent built on YouCam AI Skin Analysis: scan, a grounded routine, progress tracking and a clinic-ready summary.",
+  "license": "MIT",
+  "author": "Arlan Imanbayev",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node dev-server.js",
+    "start": "node dev-server.js",
+    "test": "node --test",
+    "e2e": "node scripts/screenshots.mjs",
+    "screenshots": "node scripts/screenshots.mjs",
+    "fixtures": "node scripts/build-fixtures.mjs",
+    "samples": "node scripts/build-samples.mjs",
+    "youcam:check": "node scripts/youcam-check.mjs"
+  },
+  "keywords": [
+    "youcam",
+    "perfect-corp",
+    "skin-analysis",
+    "agent",
+    "gemini",
+    "hackathon"
+  ]
+}

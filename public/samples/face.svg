@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800" role="img" aria-label="Illustrated sample face">
+  <rect width="600" height="800" fill="#d9e2de"/>
+  <circle cx="470" cy="150" r="190" fill="#e6ece9"/>
+  <!-- hair, back -->
+  <path d="M120 420 C96 250 170 120 300 118 C430 120 506 250 480 420 C470 520 500 600 520 640 L80 640 C100 600 130 520 120 420 Z" fill="#2c2420"/>
+  <!-- shoulders and neck -->
+  <path d="M60 800 C70 700 150 660 240 640 L360 640 C450 660 530 700 540 800 Z" fill="#3e5a52"/>
+  <path d="M252 540 L348 540 L356 652 C330 672 270 672 244 652 Z" fill="#b98466"/>
+  <!-- ears -->
+  <ellipse cx="150" cy="365" rx="20" ry="36" fill="#c48e6f"/>
+  <ellipse cx="450" cy="365" rx="20" ry="36" fill="#c48e6f"/>
+  <!-- face -->
+  <path d="M300 165 C392 165 452 232 452 340 C452 452 392 560 300 568 C208 560 148 452 148 340 C148 232 208 165 300 165 Z" fill="#cf9a7b"/>
+  <!-- fringe -->
+  <path d="M150 292 C148 186 228 136 308 140 C390 144 454 196 454 286 C434 228 376 196 300 198 C236 196 182 226 150 292 Z" fill="#2c2420"/>
+  <!-- brows -->
+  <path d="M206 312 C226 300 254 300 274 308" stroke="#3a2c26" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M326 308 C346 300 374 300 394 312" stroke="#3a2c26" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <!-- eyes -->
+  <path d="M212 348 C226 334 256 334 270 348 C256 358 226 358 212 348 Z" fill="#f4efe9"/>
+  <path d="M330 348 C344 334 374 334 388 348 C374 358 344 358 330 348 Z" fill="#f4efe9"/>
+  <circle cx="241" cy="347" r="8.5" fill="#3b2a22"/>
+  <circle cx="359" cy="347" r="8.5" fill="#3b2a22"/>
+  <path d="M210 347 C226 330 256 330 272 347" stroke="#3a2c26" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M328 347 C344 330 374 330 390 347" stroke="#3a2c26" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- nose -->
+  <path d="M300 352 C298 380 292 404 286 420 C292 430 308 430 314 420" stroke="#a9765a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <!-- mouth -->
+  <path d="M262 478 C280 470 320 470 338 478 C322 494 278 494 262 478 Z" fill="#b25f5a"/>
+  <path d="M262 478 C282 484 318 484 338 478" stroke="#8e4744" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+</svg>
